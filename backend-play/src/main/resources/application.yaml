@@ -1,0 +1,21 @@
+#spring:
+#  profiles:
+#    active: 9999
+
+server:
+  port: 9999
+
+spring:
+
+  # MySQL
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: root
+    password: 123456
+    url: jdbc:mysql://192.168.0.155:3306/licslan
+
+  # Redis
+  redis:
+    database: 0
+    port: 6379
+    host: 192.168.0.155
