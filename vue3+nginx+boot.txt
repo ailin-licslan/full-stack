@@ -4,20 +4,31 @@
 前端 Vue3 antd
 后端 Java8 MySQL Redis JPA Postman Nginx
 
+#Vue 快速入门可以参考 https://www.bilibili.com/video/BV1Vj411e73g
+
+
+FULL-STACK STEPS:
 1.vue 安装介绍  https://www.runoob.com/vue3/vue3-install.html
 2.nginx 安装介绍
 3.SpringBoot 配置介绍
 4.演示基础项目
 5.DOCKER 容器化
 
+DOCKER STEPS:
+0.wsl install Unbantu系统  https://blog.csdn.net/Once_day/article/details/125108203
+1.先 window install docker desktop  其他操作系统也行 只要本地有docker环境就可以了
+https://docs.docker.com/desktop/install/windows-install/
+netsh winsock reset
+2.下载需要的镜像  作为反向代理
+docker pull nginx  重新配置nginx.conf
+3.编写dockerfile文件
+4.构建镜像
+5.启动容器  设置不同端口
 
 
 
 TODO K8S + DOCKER
 
-
 a. Vue3 项目搭建  vite antd  可以参考： https://www.runoob.com/vue3/vue3-install.html
-
 b. NGINX 安装启动 配置规则可以参考： https://www.bilibili.com/video/BV1Bx411Z7Do/?spm_id_from=333.337.search-card.all.click&vd_source=bbb985ceadc8e3199d1d5a091b58155b
-
 c. SpringBoot 项目搭建  可以参考：https://www.bilibili.com/video/BV1xu4y1p77p/
