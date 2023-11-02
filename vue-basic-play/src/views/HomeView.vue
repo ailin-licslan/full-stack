@@ -1,9 +1,20 @@
 <script setup>
-import TheWelcome from '../components/TheWelcome.vue'
+
 </script>
 
 <template>
-  <main>
-    <TheWelcome />
+  <main class="home">
+    Hello world vue!
   </main>
 </template>
+
+<style>
+
+
+.home {
+  display: flex;
+  h3 {
+    font-size: 1.2rem;
+  }
+}
+</style>
