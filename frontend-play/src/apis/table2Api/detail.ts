@@ -23,6 +23,7 @@ export async function getInfo(id) {
             if (res !== null) {
                 info = res.data
                 if (pageDetail.length!=0) {
+                    // @ts-ignore
                     pageDetail.splice()
                 }
                 pageDetail.push(info)

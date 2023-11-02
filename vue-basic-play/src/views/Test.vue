@@ -114,7 +114,7 @@ import TestData from "../data/TestData";
     <br>
 
     爱好
-    <select v-model="TestData.setup().hobby">
+    <select v-model="TestData.setup().hobby.value">
       <option value="">请选择</option>
       <option value="1">篮球</option>
       <option value="2">足球</option>

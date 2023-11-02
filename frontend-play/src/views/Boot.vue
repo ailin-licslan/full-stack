@@ -175,7 +175,8 @@ const handleAdd = () => {
 
 
       <!--  删除功能  TODO  -->
-      <a class="ant-dropdown-link">编辑</a>
+      <router-link :to="'/edit/' + record.id"><a class="ant-dropdown-link">编辑</a></router-link>
+
 
     </span>
     </template>
@@ -203,7 +204,7 @@ const handleAdd = () => {
 
 
   <!--表格三测试-->
-  <a-button class="editable-add-btn" style="margin-bottom: 8px" @click="handleAdd">新增按钮</a-button>
+<!--  <a-button class="editable-add-btn" style="margin-bottom: 8px" @click="handleAdd">新增按钮</a-button>
   <a-table bordered :data-source="table3.setup().dataSource.value" :columns="columns">
 
     <template #bodyCell="{ column, text, record }">
@@ -233,7 +234,7 @@ const handleAdd = () => {
       </template>
     </template>
 
-  </a-table>
+  </a-table>-->
 
 
 </template>

@@ -1,4 +1,4 @@
-import {computed, reactive, ref, watch} from "vue";
+import {computed, reactive, ref, watch, watchEffect} from "vue";
 
 // @ts-ignore
 import image from '../image/waye.jpg'
@@ -58,11 +58,43 @@ export default {
         const question = ref('')
         const answer = ref('Questions usually contain a question mark. ;-)')
 
-        watch(hobby, (newValue, oldValue) => {
-            debugger
-                console.log("newValue is : ", newValue, "oldValue is : ", oldValue)
-            },
-        )
+        // watch(hobby, (newValue, oldValue) => {
+        //         console.log("newValue is : ", newValue, "oldValue is : ", oldValue)
+        //         if (newValue === "2") console.log("画画")
+        //     },
+        // )
+
+        //监听对象
+        // watch(date,(newValue,oldValue)=>{
+        //     console.log("newValue is : ", newValue, "oldValue is : ", oldValue)
+        //     if(newValue.year==="2023"){
+        //         console.log("2023")
+        //     }
+        //     if(newValue.month==="11"){
+        //         console.log("11")
+        //     }
+        // })
+
+
+        //监听对象中的某个属性
+        // watch(() => date.year, (newValue, oldValue) => {
+        //     console.log("newValue is : ", newValue, "oldValue is : ", oldValue)
+        //     if (newValue === "2023") {
+        //         console.log("2023")
+        //     }
+        //
+        // })
+
+        //自动监听
+        watchEffect(() => {
+            console.log("start ....")
+
+            if (hobby.value === "2") console.log("画画")
+            if (date.year === "2021") console.log("2021")
+            if (date.month === "12") console.log("12")
+
+            console.log("end ...")
+        })
 
 
         return {
