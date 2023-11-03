@@ -15,6 +15,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import static com.licslan.crudplay.DateUtil.*;
+
 @Service
 public class PeopleService {
 
@@ -27,8 +29,17 @@ public class PeopleService {
     public List<PeopleDto> getPeopleList() {
         List<People> all = dao.findAll();
         List<PeopleDto> peopleDtoList = new ArrayList<>();
+
         for (People people : all) {
-            String[] split = people.getTags().split(",");
+
+            String[] split;
+
+            if (people.getTags() != null) {
+                split = people.getTags().split(",");
+            } else {
+                split = new String[]{};
+            }
+
             PeopleDto build = PeopleDto.builder().
                     id(people.getId()).
                     name(people.getName()).
@@ -62,6 +73,8 @@ public class PeopleService {
         People people = People.builder().id(personVo.getId()).
                 name(personVo.getName()).
                 age(personVo.getAge()).
+                tags(personVo.getTags()).
+                createTime(localDateTime2Instant(parse2LocalDate(personVo.getCreateTime(),"yyyy-MM-dd HH:mm:ss").atStartOfDay())).
                 address(personVo.getAddress()).build();
         dao.save(people);
     }

@@ -26,7 +26,8 @@ export default defineComponent({
 
 <template>
   <a-table :columns="columns" :data-source="pageEdit" bordered>
-    <template v-for="col in ['name', 'age', 'address','time','tags','key']" #[col]="{ text, record }" :key="col">
+
+    <template v-for="col in ['name', 'age', 'address','createTime','tags','key']" #[col]="{ text, record }" :key="col">
       <div>
         <a-input
             v-if="editableData[record.key]"
@@ -38,6 +39,9 @@ export default defineComponent({
         </template>
       </div>
     </template>
+
+
+
     <template #operation="{ record }">
       <div class="editable-row-operations">
         <span v-if="editableData[record.key]">
@@ -57,7 +61,6 @@ export default defineComponent({
 import {cloneDeep} from 'lodash-es';
 import {defineComponent, reactive, ref, UnwrapRef} from 'vue';
 import Edit, {getInfoEdit, pageEdit} from "../apis/table2Api/edit";
-import edit from "../apis/table2Api/edit";
 
 const columns = [
   {
@@ -122,6 +125,7 @@ export default defineComponent({
     //   tags: "xx"
     // });
     let o ={}
+    debugger
     for (let i = 0; i < pageEdit.length; i++) {
       o ={
         key: pageEdit[i].id.toString(),
@@ -140,10 +144,16 @@ export default defineComponent({
 
 
     //console.log("dataSource -- xxxxxx  "+ JSON.stringify(dataSource))
+
     const editableData: UnwrapRef<Record<string, DataItem>> = reactive({});
 
     const editFun = (key: string) => {
+
       editableData[key] = cloneDeep(dataSource.value.filter(item => key === item.key)[0]);
+
+
+      console.log("vvvvvvvvv======>"+JSON.stringify(editableData))
+
     };
     const save = (key: string) => {
       Object.assign(dataSource.value.filter(item => key === item.key)[0], editableData[key]);
