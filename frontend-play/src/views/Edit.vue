@@ -1,32 +1,5 @@
-<!--<script>
-
-import {getInfoEdit, pageEdit} from "@/apis/table2Api/edit";
-import {defineComponent} from "vue";
-import Edit from "../apis/table2Api/edit";
-
-
-export default defineComponent({
-  computed: {
-    Edit() {
-      return Edit
-    },
-    pageEdit() {
-      return pageEdit
-    }
-  },
-  mounted: function () {
-    getInfoEdit(this.$route.params.id)
-  },
-})
-</script>-->
-<!--<template>
-    <a-table :dataSource="pageEdit" :columns="Edit.setup().columns" />
-</template>-->
-
-
 <template>
-  <a-table :columns="columns" :data-source="pageEdit" bordered>
-
+  <a-table :columns="columns" :data-source="dataSource" bordered>
     <template v-for="col in ['name', 'age', 'address','createTime','tags','key']" #[col]="{ text, record }" :key="col">
       <div>
         <a-input
@@ -39,9 +12,6 @@ export default defineComponent({
         </template>
       </div>
     </template>
-
-
-
     <template #operation="{ record }">
       <div class="editable-row-operations">
         <span v-if="editableData[record.key]">
@@ -51,29 +21,34 @@ export default defineComponent({
           </a-popconfirm>
         </span>
         <span v-else>
-          <a @click="editFun(record.key)">Edit</a>
+          <a @click="edit(record.key)">Edit</a>
         </span>
       </div>
     </template>
   </a-table>
+
+  <router-link to="/boot">
+    <button>返回列表页</button>
+  </router-link>
+
 </template>
 <script lang="ts">
-import {cloneDeep} from 'lodash-es';
-import {defineComponent, reactive, ref, UnwrapRef} from 'vue';
-import Edit, {getInfoEdit, pageEdit} from "../apis/table2Api/edit";
+import { cloneDeep } from 'lodash-es';
+import { defineComponent, reactive, ref, UnwrapRef } from 'vue';
+import Edit, {editUpdate, getInfoEdit, pageEdit} from "../apis/table2Api/edit";
 
 const columns = [
   {
     title: 'name',
     dataIndex: 'name',
-    width: '15%',
-    slots: {customRender: 'name'},
+    width: '25%',
+    slots: { customRender: 'name' },
   },
   {
     title: 'age',
     dataIndex: 'age',
-    width: '10%',
-    slots: {customRender: 'age'},
+    width: '15%',
+    slots: { customRender: 'age' },
   },
   {
     title: 'address',
@@ -93,41 +68,46 @@ const columns = [
     width: '30%',
     slots: {customRender: 'tags'},
   },
-
   {
     title: 'operation',
     dataIndex: 'operation',
-    slots: {customRender: 'operation'},
+    slots: { customRender: 'operation' },
   },
 ];
-
 interface DataItem {
   key: string;
   name: string;
   age: number;
   address: string;
   createTime: string;
-  tags: string;
+  tags:[]
 }
-
 const data: DataItem[] = [];
-
+// for (let i = 0; i < 100; i++) {
+//   data.push({
+//     key: i.toString(),
+//     name: `Edrward ${i}`,
+//     age: 32,
+//     address: `London Park no. ${i}`,
+//     createTime:'',
+//     tags:[]
+//   });
+// }
 export default defineComponent({
   setup() {
-
-    //console.log("xxxxxx  "+ JSON.stringify(edit.setup().pageEdit))
-    // data.push({
-    //   key: "1",
-    //   name: "xxxx",
-    //   age: 0,
-    //   address: "xxx",
-    //   time: "2023-11-02 06:57:23",
-    //   tags: "xx"
-    // });
     let o ={}
-    debugger
+    //debugger
     for (let i = 0; i < pageEdit.length; i++) {
-      o ={
+      data.push({
+        key: pageEdit[i].id.toString(),
+        name: pageEdit[i].name,
+        age: pageEdit[i].age,
+        address: pageEdit[i].address,
+        createTime: pageEdit[i].createTime,
+        tags: pageEdit[i].tags
+      })
+
+      o = {
         key: pageEdit[i].id.toString(),
         name: pageEdit[i].name,
         age: pageEdit[i].age,
@@ -135,67 +115,89 @@ export default defineComponent({
         createTime: pageEdit[i].createTime,
         tags: pageEdit[i].tags
       }
-      console.log(JSON.stringify(o))
+      console.log("object:  "+JSON.stringify(o))
 
     }
-    data.push(<DataItem>o)
 
     const dataSource = ref(data);
 
-
-    //console.log("dataSource -- xxxxxx  "+ JSON.stringify(dataSource))
-
     const editableData: UnwrapRef<Record<string, DataItem>> = reactive({});
 
-    const editFun = (key: string) => {
-
+    const edit = (key: string) => {
+      //debugger
       editableData[key] = cloneDeep(dataSource.value.filter(item => key === item.key)[0]);
-
-
-      console.log("vvvvvvvvv======>"+JSON.stringify(editableData))
-
+      console.log("EDIT is :", JSON.stringify(editableData))
     };
     const save = (key: string) => {
       Object.assign(dataSource.value.filter(item => key === item.key)[0], editableData[key]);
+      //console.log("save is :", JSON.stringify(editableData)+ "datasource is :"+ JSON.stringify(dataSource.value))
+
+      for (let i = 0; i < dataSource.value.length; i++) {
+        let obj = {
+          id: Number(dataSource.value[i].key),
+          name: dataSource.value[i].name,
+          age: dataSource.value[i].age,
+          address: dataSource.value[i].address,
+          createTime: dataSource.value[i].createTime,
+          tags: dataSource.value[i].tags
+        }
+        //调用保存接口
+        editUpdate(obj)
+
+      }
+
+
+
+
+
+
       delete editableData[key];
+      console.log("delete is :", JSON.stringify(editableData))
+
+
+
     };
     const cancel = (key: string) => {
       delete editableData[key];
     };
 
+
+
     return {
+      dataSource,
       columns,
       editingKey: '',
       editableData,
-      editFun,
+      edit,
       save,
       cancel,
     };
   },
 
-  mounted: function () {
-    getInfoEdit(this.$route.params.id)
-  },
-  computed: {
-    Edit() {
-      return Edit
+    mounted: function () {
+      getInfoEdit(this.$route.params.id)
     },
-    pageEdit() {
-      return pageEdit
-    }
-  },
-});
+
+      computed: {
+        Edit() {
+          return Edit
+        },
+        pageEdit() {
+          return pageEdit
+        }
+      },
+
+
+
+},
+
+
+
+
+);
 </script>
-
-
 <style scoped>
 .editable-row-operations a {
   margin-right: 8px;
 }
 </style>
-
-
-
-
-
-

@@ -1,10 +1,8 @@
 <script>
 
-import detail, {getInfo, pageDetail} from "../apis/table2Api/detail";
+import {getInfo, pageDetail} from "../apis/table2Api/detail";
 import {defineComponent} from "vue";
 import Detail from "../apis/table2Api/detail";
-
-
 
 
 export default defineComponent({
@@ -22,7 +20,11 @@ export default defineComponent({
 })
 </script>
 <template>
-    <a-table :dataSource="pageDetail" :columns="Detail.setup().columns" />
+  <a-table :dataSource="pageDetail" :columns="Detail.setup().columns"/>
+  <router-link to="/boot">
+    <button>返回列表页</button>
+  </router-link>
+
 </template>
 
 <style scoped>

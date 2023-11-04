@@ -11,6 +11,7 @@ import {CheckOutlined, EditOutlined} from '@ant-design/icons-vue';
 import {cloneDeep} from 'lodash-es';
 import {table2Remove} from "../apis/table2Api/delete";
 import {onSearch, pageDataTab} from "../apis/table2Api/search";
+import {defineComponent} from "vue/dist/vue";
 
 interface DataItem {
   key: string;
@@ -71,10 +72,6 @@ const handleAdd = () => {
   };
   table3.setup().dataSource.value.push(newData);
 };
-
-
-
-
 
 
 

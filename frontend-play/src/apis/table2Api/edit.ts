@@ -1,4 +1,7 @@
 import {$http} from "../index";
+// @ts-ignore
+import {reactive} from "vue";
+
 let info = {
     name: "",
     age: 0,
@@ -7,10 +10,6 @@ let info = {
     tags: [],
     id: null
 }
-// @ts-ignore
-import {reactive} from "vue";
-import {useRouter}  from "vue-router";
-
 
 
 export let pageEdit = reactive([])
@@ -44,12 +43,19 @@ export async function editUpdate(info) {
     }).then(
         res => {
             if (res !== null) {
+
+                if (pageEdit.length!=0) {
+                    // @ts-ignore
+                    pageEdit.splice()
+                }
+
+
                 //重新刷新页面
                 //window.location.href = window.location.href
                 console.log("更新成功！")
                 // 保留当前页记录，页面跳转至 /boot 页
                 //useRouter().push('/boot').then(r => console.log("kkkkkkkkkkk"));
-                this.$router.push({path:'/boot'})
+                //this.$router.push({path:'/boot'})
 
             }
         }
