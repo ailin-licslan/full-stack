@@ -11,7 +11,7 @@ export default {
             x: 10, y: 20
         })
 
-        const hobby = ref("")
+        let hobby = ref("")
         const date = reactive({
             year: "2023",
             month: "11"
@@ -58,11 +58,14 @@ export default {
         const question = ref('')
         const answer = ref('Questions usually contain a question mark. ;-)')
 
-        // watch(hobby, (newValue, oldValue) => {
-        //         console.log("newValue is : ", newValue, "oldValue is : ", oldValue)
-        //         if (newValue === "2") console.log("画画")
-        //     },
-        // )
+        setInterval(()=> hobby.value = Math.random().toString()
+        ,5000)
+
+        watch(hobby, (_newValue, _oldValue) => {
+                console.log("newValue is : ", _newValue, "oldValue is : ", _oldValue)
+                if (_newValue === "2") console.log("画画")
+            },
+        )
 
         //监听对象
         // watch(date,(newValue,oldValue)=>{
