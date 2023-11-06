@@ -23,8 +23,9 @@ function AppRouter() {
                 <Route path={"/"} element={<Home/>}></Route>
                 <Route path={"/about"} element={<About/>}></Route>
 
-                {/*二级路由*/}
+
                 <Route path="/layout" element={<Layout/>}>
+                    {/*二级嵌套路由*/}
                     <Route path="/layout/board" element={<Board/>}></Route>
                 </Route>
 
