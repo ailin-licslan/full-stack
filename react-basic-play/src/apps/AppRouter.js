@@ -13,7 +13,9 @@ function AppRouter() {
     return (
 
         <BrowserRouter>
-            <Link to="/">首页</Link>
+            <Link to="/">首页   &nbsp;&nbsp;&nbsp;&nbsp;</Link>
+
+
             <Link to="/about">关于</Link>
 
 
