@@ -10,8 +10,9 @@ import './index.css'; //应用的全局样式文件
 
 //import AppHooks from '../src/apps/AppHooks'; // 引入函数组件Hooks
 
-import AppMobx from "./apps/AppMobx";
-import AppMobxComputed from "./apps/AppMobxComputed";  // 引入状态管理组件
+import AppMobx from "./apps/AppMobx"; // 引入状态管理组件
+import AppMobxComputed from "./apps/AppMobxComputed";
+import AppMobxModule from "./apps/AppMobxModule";
 
 //渲染根组件APP到id=root的DOM节点上
 const root = ReactDOM.createRoot(document.getElementById('root'));
@@ -20,7 +21,9 @@ root.render(
     /*<AppHooks/>*/
     /*<AppRouter/>*/
     /*<AppMobx/>*/
-    <AppMobxComputed/>
+    /*<AppMobxComputed/>*/
+
+    <AppMobxModule/>
 );
 
 
