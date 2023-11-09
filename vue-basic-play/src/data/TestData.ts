@@ -107,6 +107,7 @@ export default {
 
     }
 }
+
 const aa = ref("xxx")
 const a = "ARE YOU OK WITH VUE STUDY?"
 const b = ref(20)
@@ -114,10 +115,12 @@ const b = ref(20)
 const data = reactive({
     age: 1, name: "LIN", show: true
 })
+
 //响应式对象
 const web = reactive({
     img: image, url: "www.xxx.com", fontStatus: false
 })
+
 const count = ref(0)
 
 //声明复杂对象

@@ -3,7 +3,6 @@
 涉及的技术栈
 前端 Vue3 antd
 后端 Java8 MySQL Redis JPA Postman Nginx
-
 #Vue 快速入门可以参考 https://www.bilibili.com/video/BV1Vj411e73g
 
 
@@ -13,6 +12,7 @@ FULL-STACK STEPS:
 3.SpringBoot 配置介绍
 4.演示基础项目
 5.DOCKER 容器化
+
 
 DOCKER STEPS:
 0.wsl install Unbantu系统  https://blog.csdn.net/Once_day/article/details/125108203
@@ -28,7 +28,16 @@ docker pull nginx  重新配置nginx.conf
 
 
 TODO K8S + DOCKER
-
 a. Vue3 项目搭建  vite antd  可以参考： https://www.runoob.com/vue3/vue3-install.html
 b. NGINX 安装启动 配置规则可以参考： https://www.bilibili.com/video/BV1Bx411Z7Do/?spm_id_from=333.337.search-card.all.click&vd_source=bbb985ceadc8e3199d1d5a091b58155b
 c. SpringBoot 项目搭建  可以参考：https://www.bilibili.com/video/BV1xu4y1p77p/
+
+
+
+
+Rust学习
+https://www.bilibili.com/video/BV16B4y1q7Sq/?p=2&spm_id_from=pageDriver&vd_source=bbb985ceadc8e3199d1d5a091b58155b
+Python学习
+https://www.bilibili.com/video/BV1E64y1h7qP/?spm_id_from=333.999.0.0&vd_source=bbb985ceadc8e3199d1d5a091b58155b
+8小时转职Golang工程师(如果你想低成本学习Go语言)  刘丹冰
+https://www.bilibili.com/video/BV1gf4y1r79E/?spm_id_from=333.337.search-card.all.click&vd_source=bbb985ceadc8e3199d1d5a091b58155b

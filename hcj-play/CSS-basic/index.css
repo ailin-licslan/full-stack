@@ -1,0 +1,17 @@
+
+/**
+外部样式
+*/
+
+body {
+    height: 100%;
+    margin: 0;
+}
+.start {
+    height: 200px;
+    border: #108ee9 solid 5px;
+    margin-top: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
