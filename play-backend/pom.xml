@@ -9,7 +9,7 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.licslan</groupId>
-	<artifactId>backend-play</artifactId>
+	<artifactId>play-backend</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>backend-play</name>
 	<description>Demo project for Spring Boot</description>
