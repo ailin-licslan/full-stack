@@ -39,7 +39,6 @@ export default function SearchForm({pagination,update}){
                    <input type="text" className="form-control rounded-0"
                           autoFocus="autoFocus"
                           placeholder={inputText}
-
                           onChange={event => setInput(event.target.value)}
                           onKeyUp={onHandleKeyUp}
                    />

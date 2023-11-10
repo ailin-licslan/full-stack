@@ -1,0 +1,26 @@
+.rc-pagination{
+  padding: 0;
+  list-style: none;
+  display: flex;
+  gap: 8px;
+  li{
+    width: 40px;
+    height: 40px;
+    background-color: gray;
+    line-height: 40px;
+    text-align: center;
+    font-weight: bold;
+    color: #108ee9;
+    &:hover{
+      background-color: #108ee9;
+      color: #ffffff;
+    }
+  }
+  .rc-pagination-prev.rc-pagination-disabled,
+  .rc-pagination-next.rc-pagination-disabled{
+    cursor: not-allowed;
+  }
+  .rc-pagination-option{
+    display: none;
+  }
+}

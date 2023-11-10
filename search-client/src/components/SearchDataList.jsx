@@ -1,9 +1,16 @@
 import {useEffect} from "react";
 import {http, qs} from "../http/index.js";
+import '../assets/SearchDataList.scss'
 
 export default function SearchDataList({pagination, update}) {
 
+
+
+    //调用接口
     useEffect(() => {
+
+        console.log("~~~~~~start~~~~~~~")
+
         async function reqSearchList() {
             const query = qs.stringify({
                 keyword: pagination.keywordTest,
@@ -12,37 +19,40 @@ export default function SearchDataList({pagination, update}) {
             })
             const data = await http.get('/getPageList' + '?' + query)
             console.log("====> " + JSON.stringify(data))
-
+            //定义一个对象
             let dataList = {}
             if (data?.success && data.content.pagination.pages !== 0) {
                 dataList = {
                     ...pagination,
                     pages: data.content.pagination.pages,
                     total: data.content.pagination.total,
-                    data: data.content.pagination.data
+                    dataWeb: data.content.pagination.pageData
                 }
-
             } else {
                 dataList = {
                     ...pagination,
                     pages: 0,
                     total: 0,
-                    data: []
+                    dataWeb: []
                 }
             }
-
+            //给父类组件的对象修改赋值
             update(dataList)
-
-            console.log("====>o  " + JSON.stringify(pagination))
-
         }
 
+        //调用方法执行一下
+        reqSearchList().then(r => console.info("You are Successfully"))
 
-        reqSearchList()
+        //依赖的数据变化 就会去请求接口  这里是[]包裹 一定要注意!!!
+    }, [pagination.keywordTest, pagination.size, pagination.page])
 
-    }, pagination.keywordTest, pagination.size, pagination.pages)
 
 
+
+
+
+
+    //渲染组件数据没有查到数据
     if (pagination.total === 0) {
         return (
             <h5 className=" py-1">没有搜到关键字
@@ -54,8 +64,34 @@ export default function SearchDataList({pagination, update}) {
         )
     }
 
+
+
+
+
+    //渲染组件数据查到数据
     return (
-        <div>有数据</div>
+        <div className=" py-5">
+            <div className="row row-cols-xl-4 row-cols-lg-3 row-cols-md-2 row-cols-1">
+                {
+                    pagination.dataWeb.map(item => (
+                        <div className="col py-1">
+                            <div className="card mx-auto rounded-0 mb-3 p-1">
+                                <img src={item.url} alt=""/>
+                                <div className="card-body">
+                                    <h3 className="text-danger">￥ {item.price}</h3>
+                                    <p className="p-title">{item.title}</p>
+                                    <p>{item.shop}</p>
+                                    <div className="d-flex">
+                                        <button className="btn btn-warning rounded-0 btn-sm">收藏</button>
+                                        <button className="btn btn-outline-danger rounded-0 btn-sm">加入购物车</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    ))
+                }
+            </div>
+        </div>
     )
 
 
