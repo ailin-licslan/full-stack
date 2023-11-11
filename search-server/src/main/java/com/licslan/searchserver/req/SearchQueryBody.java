@@ -17,4 +17,5 @@ public class SearchQueryBody {
     @Min(value = 1,message = "数据不能小于1")
     @Max(value = 50, message = "数据不能大于50")
     private int size;
+
 }

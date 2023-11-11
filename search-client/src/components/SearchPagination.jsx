@@ -1,5 +1,9 @@
 import Pagination from "rc-pagination";
 import "../assets/rc-pagination.scss"
+
+
+//分页组件
+
 export default function SearchPagination({pagination, update}) {
 
     function onChange(current){

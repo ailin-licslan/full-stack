@@ -1,4 +1,8 @@
 import {useState} from "react";
+
+
+//搜索框组件
+
 export default function SearchForm({pagination,update}){
     const inputText = "请输入关键字"
 
@@ -7,11 +11,11 @@ export default function SearchForm({pagination,update}){
 
 
     //通用方法
-    function extracted() {
-        if (input.trim().length === 0) {
-            alert("请输入关键字...")
-            return
-        }
+    function extractedCommons() {
+        // if (input.trim().length === 0) {
+        //     alert("请输入关键字...")
+        //     return
+        // }
 
         update({
             ...pagination,
@@ -22,20 +26,22 @@ export default function SearchForm({pagination,update}){
     }
 
     function onHandleClick(){
-        extracted();
+        extractedCommons();
     }
 
     function onHandleKeyUp(e){
         if(e.key==="Enter"){
-            extracted()
+            extractedCommons()
         }
     }
 
-    //*输入框数据的双向绑定 输入框和父类组件里面的keywordTest
+    //*输入框数据的双向绑定 输入框和父类组件里面的keywordTest   /* 双向绑定  onChange={event => setInput(event.target.value)} */
     return (
        <div className="row">
            <div className="col-lg-8 offset-lg-2 py-5">
                <div className="input-group input-group-lg">
+
+
                    <input type="text" className="form-control rounded-0"
                           autoFocus="autoFocus"
                           placeholder={inputText}

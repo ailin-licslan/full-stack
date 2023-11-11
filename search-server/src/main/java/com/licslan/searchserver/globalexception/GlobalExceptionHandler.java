@@ -1,7 +1,7 @@
 package com.licslan.searchserver.globalexception;
 
 
-import com.licslan.searchserver.view.ResView;
+import com.licslan.searchserver.response.ResView;
 import org.springframework.validation.BindException;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.ExceptionHandler;

@@ -2,6 +2,7 @@ package com.licslan.searchserver.service;
 
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.util.StringUtil;
 import com.licslan.searchserver.entity.Goods;
 import com.licslan.searchserver.entity.PageBean;
 import com.licslan.searchserver.mapper.GoodsMapper;

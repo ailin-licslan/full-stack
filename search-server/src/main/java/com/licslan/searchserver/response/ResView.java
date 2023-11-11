@@ -1,4 +1,4 @@
-package com.licslan.searchserver.view;
+package com.licslan.searchserver.response;
 
 import lombok.Data;
 
