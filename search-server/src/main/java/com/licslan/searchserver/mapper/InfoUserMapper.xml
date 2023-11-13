@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC
+        "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.licslan.searchserver.mapper.InfoUserMapper">
+
+    <resultMap id="baseInfoUser" type="com.licslan.searchserver.entity.InfoUser">
+        <id column="id" property="id"/>
+        <result column="age" property="age"/>
+        <result column="name" property="name"/>
+        <result column="sex" property="sex"/>
+        <result column="hobby" property="hobby"/>
+    </resultMap>
+
+
+    <insert id="insert">
+        INSERT into tb_info_user (name,age,sex,hobby) VALUES (#{name},#{age},#{sex},#{hobby})
+    </insert>
+
+    <update id="update">
+        UPDATE tb_info_user SET name = #{name},age = #{age},hobby = #{hobby},sex = #{sex} WHERE id = #{id}
+    </update>
+
+    <delete id="delete">
+        DELETE FROM tb_info_user WHERE id = #{id}
+    </delete>
+
+    <select id="queryAll" resultType="com.licslan.searchserver.entity.InfoUser" resultMap="baseInfoUser">
+        SELECT * FROM tb_info_user
+    </select>
+
+    <select id="queryById" resultType="com.licslan.searchserver.entity.InfoUser" resultMap="baseInfoUser">
+        SELECT * FROM tb_info_user WHERE id = #{uid}
+    </select>
+
+
+</mapper>

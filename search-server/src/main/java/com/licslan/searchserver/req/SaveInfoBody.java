@@ -9,6 +9,7 @@ import javax.validation.constraints.NotNull;
 @Data
 public class SaveInfoBody {
 
+    private Integer id;
 
     @Min(value = 1,message = "年龄不能小于1")
     @Max(value = 150, message = "年龄不能大于150")
@@ -19,6 +20,7 @@ public class SaveInfoBody {
 
     @NotNull(message = "关键字不能为空！")
     private String hobby;
+
     @NotNull(message = "关键字不能为空！")
     private String sex;
 }

@@ -1,12 +1,19 @@
 import "../../assets/base.scss"
 import {useEffect, useState} from "react";
 import {http} from "../../http/index.js";
-import {useNavigate} from "react-router-dom";
+import {useLocation, useNavigate} from "react-router-dom";
 
 export default function About() {
 
 
+    const location = useLocation();
+    console.log("获取传过来的参数location ", location)
+    let id = location.state;
+    console.log("获取传过来的参数id ", id)
+
+
     const [infoYou, setInfoYou] = useState({
+        id: 0,
         age: 0,
         name: "",
         sex: "男",
@@ -15,6 +22,7 @@ export default function About() {
 
 
     const You = {
+        id: 0,
         age: 32,
         name: "LICSLAN",
         sex: "男",
@@ -25,7 +33,10 @@ export default function About() {
     useEffect(() => {
         async function getInfo() {
 
-            const data = await http.get('/getLinInfo?id=1')
+            if (id === null) {
+                id = 1;
+            }
+            const data = await http.get('/getLinInfo?id=' + id)
 
             console.log("get data from server is :" + JSON.stringify(data))
 
@@ -34,14 +45,16 @@ export default function About() {
             if (data?.success) {
                 dataInfo = {
                     ...infoYou,
-                    age: data.content.info.age,
-                    name: data.content.info.name,
-                    sex: data.content.info.sex,
-                    hobby: data.content.info.hobby
+                    id: data.content.info[0].id,
+                    age: data.content.info[0].age,
+                    name: data.content.info[0].name,
+                    sex: data.content.info[0].sex,
+                    hobby: data.content.info[0].hobby
                 }
             } else {
                 dataInfo = {
                     ...infoYou,
+                    id: You.id,
                     age: You.age,
                     name: You.name,
                     sex: You.sex,
@@ -62,10 +75,16 @@ export default function About() {
     const navigate = useNavigate();
     const handleClick = () => {
 
-        //console.log("INFO YOU IS :" + JSON.stringify(infoYou))
 
-        navigate('/update', { state: infoYou });
+        //console.log("INFO YOU IS :" + JSON.stringify(infoYou))
+        navigate('/update', {state: infoYou});
     };
+
+
+    const handleClickUpdate = () => {
+        console.log("bbbbbbbbbbbbbbbbbbbbbbbbbbbb====>"+ JSON.stringify(infoYou))
+        navigate('/update', {state: infoYou});
+    }
 
     return <div id="base" className="text-black-50 text-center m-5 bg-body-secondary ">
 
@@ -86,7 +105,7 @@ export default function About() {
         </Link>*/}
 
 
-{/*        <Link id="update" className="mh-100 m-5  text-decoration-none rounded-1"
+        {/*        <Link id="update" className="mh-100 m-5  text-decoration-none rounded-1"
               to={{
                   pathname: `/update`,
                   state: {age: infoYou.age, name: infoYou.name, hobby: infoYou.hobby}
@@ -96,7 +115,7 @@ export default function About() {
         </Link>*/}
 
 
-{/*        <Link
+        {/*        <Link
             id="update"
             className="mh-100 m-5 text-decoration-none rounded-1"
             to={{
@@ -110,7 +129,11 @@ export default function About() {
         </Link>*/}
 
 
-        <button className="text-dark text-end m-5 rounded-2" onClick={handleClick}>修改</button>
+        <button className="text-dark text-end m-5 rounded-2" onClick={handleClick}>新增</button>
+
+        <button className="text-dark text-end m-5 rounded-2" onClick={handleClickUpdate}>修改</button>
+
+        <button className="text-dark text-end m-5 rounded-2">清空</button>
 
     </div>
 }

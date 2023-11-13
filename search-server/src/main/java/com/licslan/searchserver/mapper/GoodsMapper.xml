@@ -12,7 +12,6 @@
         <result column="goods_title" property="title"/>
         <result column="goods_shop" property="shop"/>
         <result column="goods_type" property="type"/>
-
     </resultMap>
 
 

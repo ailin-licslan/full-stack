@@ -8,6 +8,7 @@ export default function Update() {
     const navigate = useNavigate()
 
     const [update, setUpdate] = useState({
+        id: 0,
         age: 0,
         name: "",
         sex: "",
@@ -22,6 +23,33 @@ export default function Update() {
     console.log("获取传过来的参数infoYou ", infoYou)
 
 
+    async function updateInfo() {
+
+        debugger
+        const dataUpdate ={
+            id: infoYou.id,
+            age: update.age,
+            name: update.name,
+            sex: update.sex,
+            hobby: update.hobby
+
+        }
+        const query = qs.stringify(dataUpdate)
+        console.log("修改操作的参数是：" + query)
+
+        const data = await http.post('/updateInfo' + '?' + query)
+
+        console.log("update data is ===> " + JSON.stringify(data) + "  ========  " + infoYou.id)
+        if (data?.success && data.code === 1) {
+            //跳转到信息页
+            navigate("/about", {state: infoYou.id})
+        } else {
+            alert(JSON.stringify(data.content))
+        }
+    }
+
+
+    //保存记录
     async function saveInfo() {
 
         console.log("save is : " + JSON.stringify(update))
@@ -34,8 +62,8 @@ export default function Update() {
 
         if (data?.success && data.code === 1) {
             //跳转到信息页
-            navigate("/about")
-        }else {
+            navigate("/home")
+        } else {
             alert(JSON.stringify(data.content))
         }
     }
@@ -94,7 +122,9 @@ export default function Update() {
                                value={update.sex}/></div>
             <div> 年龄： <input onChange={onchangeAge} className="text-dark text-start m-1 rounded-1" type={"text"}
                                value={update.age}/></div>
-            <button className="text-dark text-end m-5 rounded-2" onClick={saveInfo}>保存</button>
+            <button className="text-dark text-end m-5 rounded-2" onClick={saveInfo}>新增保存</button>
+
+            <button className="text-dark text-end m-5 rounded-2" onClick={updateInfo}>修改保存</button>
         </div>
 
 
