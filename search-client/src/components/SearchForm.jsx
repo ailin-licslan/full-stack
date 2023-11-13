@@ -4,7 +4,8 @@ import {useState} from "react";
 //搜索框组件
 
 export default function SearchForm({pagination,update}){
-    const inputText = "请输入关键字"
+
+    const inputText = "百度一下"
 
     // 操作父类里面的关键字变量
     const [input,setInput]=useState(pagination.keywordTest)

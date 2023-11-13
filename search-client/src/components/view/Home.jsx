@@ -1,6 +1,7 @@
 import "../../assets/base.scss"
 import {useEffect, useState} from "react";
 import {http, qs} from "../../http/index.js";
+import SearchPagination from "../SearchPagination.jsx";
 
 export default function Home() {
 
@@ -62,7 +63,9 @@ export default function Home() {
     // })
 
 
-    return <div id="base" className="text-danger text-center m-5 bg-body-secondary">
+    return (
+
+        <div id="base" className="text-danger text-center m-5 bg-body-secondary">
 
         <table className="table table-striped">
             <thead>
@@ -72,6 +75,7 @@ export default function Home() {
                 <th scope="col">Age</th>
                 <th scope="col">Sex</th>
                 <th scope="col">Hobby</th>
+                <th scope="col">操作</th>
             </tr>
             </thead>
             <tbody>
@@ -83,11 +87,19 @@ export default function Home() {
                         <td>{itme.age}</td>
                         <td>{itme.sex}</td>
                         <td>{itme.hobby}</td>
+                        <td>
+                            <button type="button" className="m-2 btn btn-danger">删除</button>
+                            <button type="button" className="m-2 btn btn-info">详情</button>
+                            <button type="button" className="m-2 btn btn-info">编辑</button>
+                        </td>
                     </tr>
                 ))
             }
             </tbody>
         </table>
 
+
+
     </div>
+    )
 }

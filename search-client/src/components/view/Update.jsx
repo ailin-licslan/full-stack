@@ -9,7 +9,7 @@ export default function Update() {
 
     const [update, setUpdate] = useState({
         id: 0,
-        age: 0,
+        age: "",
         name: "",
         sex: "",
         hobby: ""
@@ -18,15 +18,13 @@ export default function Update() {
     //const {infoYou} = useParams()
     // 使用 useLocation 钩子获取传递的参数
     const location = useLocation();
-    console.log("获取传过来的参数location ", location)
     const infoYou = location.state;
     console.log("获取传过来的参数infoYou ", infoYou)
 
 
     async function updateInfo() {
 
-        debugger
-        const dataUpdate ={
+        const dataUpdate = {
             id: infoYou.id,
             age: update.age,
             name: update.name,
@@ -34,18 +32,26 @@ export default function Update() {
             hobby: update.hobby
 
         }
+
         const query = qs.stringify(dataUpdate)
+
         console.log("修改操作的参数是：" + query)
 
         const data = await http.post('/updateInfo' + '?' + query)
 
         console.log("update data is ===> " + JSON.stringify(data) + "  ========  " + infoYou.id)
+
         if (data?.success && data.code === 1) {
             //跳转到信息页
             navigate("/about", {state: infoYou.id})
         } else {
             alert(JSON.stringify(data.content))
         }
+    }
+
+
+    function back() {
+        navigate("/about")
     }
 
 
@@ -62,7 +68,7 @@ export default function Update() {
 
         if (data?.success && data.code === 1) {
             //跳转到信息页
-            navigate("/home")
+            navigate("/")
         } else {
             alert(JSON.stringify(data.content))
         }
@@ -115,35 +121,29 @@ export default function Update() {
         <div id="base" className="text-black-50 text-center m-5 bg-body-secondary ">
             <div className="m-5">修改信息操作：</div>
             <div> 姓名： <input onChange={onchangeName} className="text-dark text-start m-1 rounded-1" type={"text"}
-                               value={update.name}/></div>
+                               value={update.name} placeholder={infoYou.name}/></div>
             <div> 爱好： <input onChange={onchangeHobby} className="text-dark text-start m-1 rounded-1" type={"text"}
-                               value={update.hobby}/></div>
+                               value={update.hobby} placeholder={infoYou.hobby}/></div>
             <div> 性别： <input onChange={onchangeSex} className="text-dark text-start m-1 rounded-1" type={"text"}
-                               value={update.sex}/></div>
+                               value={update.sex} placeholder={infoYou.sex}/></div>
             <div> 年龄： <input onChange={onchangeAge} className="text-dark text-start m-1 rounded-1" type={"text"}
-                               value={update.age}/></div>
-            <button className="text-dark text-end m-5 rounded-2" onClick={saveInfo}>新增保存</button>
+                               value={update.age} placeholder={infoYou.age}/></div>
 
-            <button className="text-dark text-end m-5 rounded-2" onClick={updateInfo}>修改保存</button>
+
+            {
+                infoYou.flag &&
+                <button className="text-dark text-end m-5 rounded-2" onClick={saveInfo}>新增保存</button>
+            }
+
+
+            {
+                !infoYou.flag &&
+                <button className="text-dark text-end m-5 rounded-2" onClick={updateInfo}>修改保存</button>
+            }
+
+            <button className="text-dark text-end m-5 rounded-2" onClick={back}>返回</button>
         </div>
 
-
-
-
-        /*        <div id="base" className="text-black-50 text-center m-5 bg-body-secondary ">
-
-                    <div className="m-5">修改信息操作：</div>
-
-                    <div> 姓名： <input onChange={common} className="text-dark text-start m-1 rounded-1" type={"text"}
-                                       value={update.name}/></div>
-                    <div> 爱好： <input onChange={common} className="text-dark text-start m-1 rounded-1" type={"text"}
-                                       value={update.hobby}/></div>
-                    <div> 性别： <input onChange={common} className="text-dark text-start m-1 rounded-1" type={"text"}
-                                       value={update.sex}/></div>
-                    <div> 年龄： <input onChange={common} className="text-dark text-start m-1 rounded-1" type={"text"}
-                                       value={update.age}/></div>
-                    <button className="text-dark text-end m-5 rounded-2" onClick={saveInfo}>保存</button>
-                </div>*/
     )
 
 

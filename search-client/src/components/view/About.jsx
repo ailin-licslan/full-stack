@@ -17,7 +17,8 @@ export default function About() {
         age: 0,
         name: "",
         sex: "男",
-        hobby: ""
+        hobby: "",
+        flag: false
     })
 
 
@@ -39,7 +40,6 @@ export default function About() {
             const data = await http.get('/getLinInfo?id=' + id)
 
             console.log("get data from server is :" + JSON.stringify(data))
-
 
             let dataInfo = {}
             if (data?.success) {
@@ -74,16 +74,24 @@ export default function About() {
 
     const navigate = useNavigate();
     const handleClick = () => {
-
-
+        const dataInfo = {
+            id: infoYou.id,
+            age: infoYou.age,
+            name: infoYou.name,
+            sex: infoYou.sex,
+            hobby: infoYou.hobby,
+            flag: true
+        }
         //console.log("INFO YOU IS :" + JSON.stringify(infoYou))
-        navigate('/update', {state: infoYou});
+        navigate('/update', {state: dataInfo});
     };
 
-
     const handleClickUpdate = () => {
-        console.log("bbbbbbbbbbbbbbbbbbbbbbbbbbbb====>"+ JSON.stringify(infoYou))
         navigate('/update', {state: infoYou});
+    }
+
+    const back = () => {
+        navigate("/")
     }
 
     return <div id="base" className="text-black-50 text-center m-5 bg-body-secondary ">
@@ -98,42 +106,13 @@ export default function About() {
 
         <div className="text-dark text-start m-5"> 年龄： {infoYou.age}</div>
 
-        {/*
-        <Link id="update" className="mh-100 m-5  text-decoration-none rounded-1"
-              to={{pathname: '/update', state: {age:infoYou.age, name:infoYou.name}}}>
-            <button className="text-dark text-end m-5 rounded-2" onClick={print}> 修改</button>
-        </Link>*/}
-
-
-        {/*        <Link id="update" className="mh-100 m-5  text-decoration-none rounded-1"
-              to={{
-                  pathname: `/update`,
-                  state: {age: infoYou.age, name: infoYou.name, hobby: infoYou.hobby}
-                }}
-        >
-            <button className="text-dark text-end m-5 rounded-2" onClick={print}> 修改</button>
-        </Link>*/}
-
-
-        {/*        <Link
-            id="update"
-            className="mh-100 m-5 text-decoration-none rounded-1"
-            to={{
-                pathname: `/update`,
-                state: { age: infoYou.age, name: infoYou.name, hobby: infoYou.hobby }
-            }}
-        >
-            <button className="text-dark text-end m-5 rounded-2" onClick={print}>
-                修改
-            </button>
-        </Link>*/}
-
-
         <button className="text-dark text-end m-5 rounded-2" onClick={handleClick}>新增</button>
 
         <button className="text-dark text-end m-5 rounded-2" onClick={handleClickUpdate}>修改</button>
 
-        <button className="text-dark text-end m-5 rounded-2">清空</button>
+        <button className="text-dark text-end m-5 rounded-2">删除</button>
+
+        <button className="text-dark text-end m-5 rounded-2" onClick={back}>返回</button>
 
     </div>
 }

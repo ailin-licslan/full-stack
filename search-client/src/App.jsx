@@ -13,6 +13,7 @@ export default function App() {
                 <Link id="home" className="mh-100 m-5  text-decoration-none rounded-1" to="/">列表</Link>
                 <Link id="about" className="mh-100 m-5  text-decoration-none rounded-1" to="/about">关于我</Link>
                 <Link id="search" className="mh-100 m-5  text-decoration-none rounded-1" to="/search">搜索</Link>
+                <Link id="search" className="mh-100 m-5  text-decoration-none rounded-1" to="/search">新增</Link>
                 <Routes>
                     <Route path="/update" element={<Update />} />
                     <Route path={"/"} element={<Home/>}></Route>
