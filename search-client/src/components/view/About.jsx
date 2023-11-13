@@ -1,10 +1,7 @@
 import "../../assets/base.scss"
 import {useEffect, useState} from "react";
 import {http} from "../../http/index.js";
-import {BrowserRouter, Link, Route, Routes, useNavigate} from "react-router-dom";
-import SearchBox from "../SearchBox.jsx";
-import Update from "./Update.jsx";
-import {info} from "sass";
+import {useNavigate} from "react-router-dom";
 
 export default function About() {
 
@@ -65,7 +62,7 @@ export default function About() {
     const navigate = useNavigate();
     const handleClick = () => {
 
-        console.log("INFO YOU IS :" + JSON.stringify(infoYou))
+        //console.log("INFO YOU IS :" + JSON.stringify(infoYou))
 
         navigate('/update', { state: infoYou });
     };
