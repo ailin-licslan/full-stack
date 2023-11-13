@@ -66,7 +66,7 @@ public class WebTest {
 
 
     @PostMapping("/saveInfo")
-    public ResView saveInfo(SaveInfoBody body) {
+    public ResView saveInfo(@Validated SaveInfoBody body) {
 
         System.out.println("当前查询爱好 =====>  " + body.getHobby());
 

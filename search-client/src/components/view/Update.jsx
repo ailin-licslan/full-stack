@@ -35,21 +35,23 @@ export default function Update() {
         if (data?.success && data.code === 1) {
             //跳转到信息页
             navigate("/about")
+        }else {
+            alert(JSON.stringify(data.content))
         }
     }
 
 
     //TODO 待优化  可以是同一个方法  做属性判断
 
-/*    function common(e) {
-        let name = e.target.name
-        let value = e.target.value
-        console.log("受控组件使用~~~" + name + " === " + value)
-        setUpdate({
-            ...update,
-            [name]: value
-        })
-    }*/
+    /*    function common(e) {
+            let name = e.target.name
+            let value = e.target.value
+            console.log("受控组件使用~~~" + name + " === " + value)
+            setUpdate({
+                ...update,
+                [name]: value
+            })
+        }*/
 
 
     function onchangeName(current) {
@@ -82,32 +84,36 @@ export default function Update() {
 
     return (
 
-         <div id="base" className="text-black-50 text-center m-5 bg-body-secondary ">
-             <div className="m-5">修改信息操作：</div>
-             <div> 姓名： <input onChange={onchangeName} className="text-dark text-start m-1 rounded-1" type={"text"} value={update.name}/></div>
-             <div> 爱好： <input onChange={onchangeHobby} className="text-dark text-start m-1 rounded-1" type={"text"} value={update.hobby}/></div>
-             <div> 性别： <input onChange={onchangeSex} className="text-dark text-start m-1 rounded-1" type={"text"} value={update.sex}/></div>
-             <div> 年龄： <input onChange={onchangeAge} className="text-dark text-start m-1 rounded-1" type={"text"} value={update.age}/></div>
-             <button className="text-dark text-end m-5 rounded-2" onClick={saveInfo}>保存</button>
-         </div>
-
-
-
-
-/*        <div id="base" className="text-black-50 text-center m-5 bg-body-secondary ">
-
+        <div id="base" className="text-black-50 text-center m-5 bg-body-secondary ">
             <div className="m-5">修改信息操作：</div>
-
-            <div> 姓名： <input onChange={common} className="text-dark text-start m-1 rounded-1" type={"text"}
+            <div> 姓名： <input onChange={onchangeName} className="text-dark text-start m-1 rounded-1" type={"text"}
                                value={update.name}/></div>
-            <div> 爱好： <input onChange={common} className="text-dark text-start m-1 rounded-1" type={"text"}
+            <div> 爱好： <input onChange={onchangeHobby} className="text-dark text-start m-1 rounded-1" type={"text"}
                                value={update.hobby}/></div>
-            <div> 性别： <input onChange={common} className="text-dark text-start m-1 rounded-1" type={"text"}
+            <div> 性别： <input onChange={onchangeSex} className="text-dark text-start m-1 rounded-1" type={"text"}
                                value={update.sex}/></div>
-            <div> 年龄： <input onChange={common} className="text-dark text-start m-1 rounded-1" type={"text"}
+            <div> 年龄： <input onChange={onchangeAge} className="text-dark text-start m-1 rounded-1" type={"text"}
                                value={update.age}/></div>
             <button className="text-dark text-end m-5 rounded-2" onClick={saveInfo}>保存</button>
-        </div>*/
+        </div>
+
+
+
+
+        /*        <div id="base" className="text-black-50 text-center m-5 bg-body-secondary ">
+
+                    <div className="m-5">修改信息操作：</div>
+
+                    <div> 姓名： <input onChange={common} className="text-dark text-start m-1 rounded-1" type={"text"}
+                                       value={update.name}/></div>
+                    <div> 爱好： <input onChange={common} className="text-dark text-start m-1 rounded-1" type={"text"}
+                                       value={update.hobby}/></div>
+                    <div> 性别： <input onChange={common} className="text-dark text-start m-1 rounded-1" type={"text"}
+                                       value={update.sex}/></div>
+                    <div> 年龄： <input onChange={common} className="text-dark text-start m-1 rounded-1" type={"text"}
+                                       value={update.age}/></div>
+                    <button className="text-dark text-end m-5 rounded-2" onClick={saveInfo}>保存</button>
+                </div>*/
     )
 
 
