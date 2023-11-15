@@ -4,7 +4,14 @@ import About from "./components/view/About.jsx";
 import Home from "./components/view/Home.jsx";
 import "./assets/base.scss"
 import Update from "./components/view/Update.jsx";
+import Add from "./components/view/Add.jsx";
+import Detail from "./components/view/Detail.jsx";
+
 export default function App() {
+
+
+
+
 
     return (
         <>
@@ -13,12 +20,15 @@ export default function App() {
                 <Link id="home" className="mh-100 m-5  text-decoration-none rounded-1" to="/">列表</Link>
                 <Link id="about" className="mh-100 m-5  text-decoration-none rounded-1" to="/about">关于我</Link>
                 <Link id="search" className="mh-100 m-5  text-decoration-none rounded-1" to="/search">搜索</Link>
-                <Link id="search" className="mh-100 m-5  text-decoration-none rounded-1" to="/search">新增</Link>
+                <Link id="search" className="mh-100 m-5  text-decoration-none rounded-1" to="/add" >新增</Link>
                 <Routes>
                     <Route path="/update" element={<Update />} />
                     <Route path={"/"} element={<Home/>}></Route>
                     <Route path={"/about"} element={<About/>}></Route>
                     <Route path={"/search"} element={<SearchBox/>}></Route>
+                    <Route path={"/add"} element={<Add/>}></Route>
+                    <Route path={"/detail"} element={<Detail/>}></Route>
+
 
 
                    {/* <Route path="/layout" element={<Layout/>}>

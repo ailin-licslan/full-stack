@@ -12,6 +12,7 @@ export default function About() {
     console.log("获取传过来的参数id ", id)
 
 
+
     const [infoYou, setInfoYou] = useState({
         id: 0,
         age: 0,

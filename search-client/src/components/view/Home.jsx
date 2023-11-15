@@ -1,22 +1,24 @@
 import "../../assets/base.scss"
 import {useEffect, useState} from "react";
-import {http, qs} from "../../http/index.js";
-import SearchPagination from "../SearchPagination.jsx";
+import {http} from "../../http/index.js";
 import {useNavigate} from "react-router-dom";
 
 export default function Home() {
 
 
-    let [infoList, setInfoList]= useState([
+    const navigate = useNavigate();
+
+    let [infoList, setInfoList] = useState([
         {
-            id:0,
-            name:"",
-            age:0,
-            sex:"",
-            hobby:""
+            id: 0,
+            name: "",
+            age: 0,
+            sex: "",
+            hobby: ""
         }
     ])
 
+    console.log("infoLIst :" + JSON.stringify(infoList))
 
     useEffect(() => {
         async function getInfoList() {
@@ -26,7 +28,7 @@ export default function Home() {
 
                 console.log("DATA is " + JSON.stringify(response.content.infoList.pageData[0].name))
 
-               const dataList = response.content.infoList.pageData;
+                const dataList = response.content.infoList.pageData;
 
                 for (let i = 0; i < dataList.length; i++) {
                     data.push({
@@ -38,11 +40,11 @@ export default function Home() {
                     })
                 }
             }
-           setInfoList(data)
+            setInfoList(data)
         }
-        getInfoList().then(r => console.info("YOU ARE SUCCESSFULLY"))
-    },[infoList.name])
 
+        getInfoList().then(r => console.info("YOU ARE SUCCESSFULLY"))
+    }, [infoList.name])
 
 
     //const navigate = useNavigate();
@@ -56,6 +58,12 @@ export default function Home() {
         }
     };
 
+    function detail(event, id) {
+        console.log("id vvvv" + id)
+        const data = infoList.filter((item) => item.id === id)
+        console.log("data is x x " + JSON.stringify(data))
+        navigate('/detail', {state: infoList.filter((item) => item.id === id)});
+    }
 
 
     // data.push({
@@ -78,39 +86,42 @@ export default function Home() {
 
         <div id="base" className="text-danger text-center m-5 bg-body-secondary">
 
-        <table className="table table-striped">
-            <thead>
-            <tr>
-                <th scope="col">序号</th>
-                <th scope="col">姓名</th>
-                <th scope="col">年龄</th>
-                <th scope="col">性别</th>
-                <th scope="col">爱好</th>
-                <th scope="col">操作</th>
-            </tr>
-            </thead>
-            <tbody>
-            {
-                infoList.map(itme => (
-                    <tr key={itme.id}>
-                        <th scope="row">{itme.id}</th>
-                        <td>{itme.name}</td>
-                        <td>{itme.age}</td>
-                        <td>{itme.sex}</td>
-                        <td>{itme.hobby}</td>
-                        <td>
-                            <button type="button" className="m-2 btn btn-danger" onClick={event => del(event,itme.id)}>删除</button>
-                            <button type="button" className="m-2 btn btn-info">详情</button>
-                            <button type="button" className="m-2 btn btn-info" >编辑</button>
-                        </td>
-                    </tr>
-                ))
-            }
-            </tbody>
-        </table>
+            <table className="table table-striped">
+                <thead>
+                <tr>
+                    <th scope="col">序号</th>
+                    <th scope="col">姓名</th>
+                    <th scope="col">年龄</th>
+                    <th scope="col">性别</th>
+                    <th scope="col">爱好</th>
+                    <th scope="col">操作</th>
+                </tr>
+                </thead>
+                <tbody>
+                {
+                    infoList.map(itme => (
+                        <tr key={itme.id}>
+                            <th scope="row">{itme.id}</th>
+                            <td>{itme.name}</td>
+                            <td>{itme.age}</td>
+                            <td>{itme.sex}</td>
+                            <td>{itme.hobby}</td>
+                            <td>
+                                <button type="button" className="m-2 btn btn-danger"
+                                        onClick={event => del(event, itme.id)}>删除
+                                </button>
+                                <button type="button" className="m-2 btn btn-info"
+                                        onClick={event => detail(event, itme.id)}>详情
+                                </button>
+                                <button type="button" className="m-2 btn btn-info">编辑</button>
+                            </td>
+                        </tr>
+                    ))
+                }
+                </tbody>
+            </table>
 
 
-
-    </div>
+        </div>
     )
 }

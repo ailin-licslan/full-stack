@@ -20,8 +20,7 @@ export default function Update() {
     const location = useLocation();
     const infoYou = location.state;
     console.log("获取传过来的参数infoYou ", infoYou)
-
-
+    //console.log("kkkkkkkkkkkkkkk+ "+ infoYou);
     async function updateInfo() {
 
         const dataUpdate = {
