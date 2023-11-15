@@ -2,6 +2,7 @@ import "../../assets/base.scss"
 import {useEffect, useState} from "react";
 import {http, qs} from "../../http/index.js";
 import SearchPagination from "../SearchPagination.jsx";
+import {useNavigate} from "react-router-dom";
 
 export default function Home() {
 
@@ -44,6 +45,16 @@ export default function Home() {
 
 
 
+    //const navigate = useNavigate();
+    const del = async (event, id) => {
+        //debugger
+        const data = await http.delete('/del/' + id)
+        console.log("get data from server is :" + JSON.stringify(data))
+        if (data?.success) {
+            //navigate("/")
+            location.reload()
+        }
+    };
 
 
 
@@ -88,9 +99,9 @@ export default function Home() {
                         <td>{itme.sex}</td>
                         <td>{itme.hobby}</td>
                         <td>
-                            <button type="button" className="m-2 btn btn-danger">删除</button>
+                            <button type="button" className="m-2 btn btn-danger" onClick={event => del(event,itme.id)}>删除</button>
                             <button type="button" className="m-2 btn btn-info">详情</button>
-                            <button type="button" className="m-2 btn btn-info">编辑</button>
+                            <button type="button" className="m-2 btn btn-info" >编辑</button>
                         </td>
                     </tr>
                 ))
