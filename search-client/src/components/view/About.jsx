@@ -4,6 +4,7 @@ import {http} from "../../http/index.js";
 import {useLocation, useNavigate} from "react-router-dom";
 
 export default function About() {
+
     let testAt = {}
 
     const location = useLocation();
@@ -92,6 +93,8 @@ export default function About() {
 
 
     const navigate = useNavigate();
+
+
     const handleClick = () => {
         const dataInfo = {
             id: infoYou.id,
@@ -113,6 +116,8 @@ export default function About() {
         navigate("/")
     }
 
+
+    //删除
     const del = async (event, id) => {
         //debugger
         const data = await http.delete('/del/' + id)
