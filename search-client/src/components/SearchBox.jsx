@@ -9,7 +9,7 @@ import SearchPagination from "./SearchPagination.jsx";
 export default function SearchBox() {
 
 
-    //父类属性申明 以及修改父类属性的方法
+    //父类属性申明 以及修改父类属性的方法  将属性和修改属性的方法传入到子组件
     const [pagination, setPagination] = useState({
 
         keywordTest: '',  //关键字

@@ -1,5 +1,5 @@
 import {useState} from "react";
-import {useLocation, useNavigate} from "react-router-dom";
+import {useNavigate} from "react-router-dom";
 import {http, qs} from "../../http/index.js";
 
 export default function Add() {
@@ -12,13 +12,17 @@ export default function Add() {
         sex: "",
         hobby: ""
     })
-    //
+
+
+
     // //const {infoYou} = useParams()
     // // 使用 useLocation 钩子获取传递的参数
     // const location = useLocation();
     // const infoYou = location.state;
     // console.log("获取传过来的参数infoYou ", infoYou)
-    //
+
+
+
     function onchangeName(current) {
         setUpdate({
             ...update,
