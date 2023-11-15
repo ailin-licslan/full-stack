@@ -33,5 +33,9 @@
         SELECT * FROM tb_info_user WHERE id = #{uid}
     </select>
 
+    <select id="getIdMin" resultMap="baseInfoUser">
+        SELECT * from  tb_info_user where id = (SELECT min(id) as id FROM tb_info_user)
+    </select>
+
 
 </mapper>

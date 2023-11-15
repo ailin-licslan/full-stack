@@ -12,12 +12,12 @@ import com.licslan.searchserver.service.InfoUserService;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.concurrent.ConcurrentHashMap;
 
 @RestController
 @CrossOrigin
 public class WebTest {
-
 
 
     private final InfoUserService infoUserService;
@@ -44,43 +44,15 @@ public class WebTest {
 
     @GetMapping("/getLinInfo")
     public ResView getLinInfo(@RequestParam Long id) {
-
-//        if (id != 1) {
-//            return ResView.failed(0, "failed");
-//        }
-//
-//        //Map<String, Object> map = new HashMap<>();
-//
-//        if (!map.isEmpty()) {
-//            return ResView.success(1, "搜索到的结果 :").add("info", map);
-//        }
-//
-//        map.put("age", 18);
-//        map.put("name", "LIN");
-//        map.put("sex", "男");
-//        map.put("hobby", "英语,  KEEP LEARNING ,  HOW MANY YEARS YOU HAVE BEEN STUDYING ENGLISH?");
-//
-//        return ResView.success(1, "搜索到的结果 :").add("info", map);
-
-
-
-
-        PageBean<InfoUser> data = infoUserService.getList(1,100);
+        PageBean<InfoUser> data = infoUserService.getList(1, 100);
         if (data.getPages() == 0) return ResView.failed(0, "NO DATA WAS FOUND RELATE TO KEYWORDS");
-        return ResView.success(1, "搜索到的结果 :").add("info", data.getPageData().stream().filter(o->o.getId().toString().equals(id.toString())));
+        return ResView.success(1, "搜索到的结果 :").add("info", data.getPageData().stream().filter(o -> o.getId().toString().equals(id.toString())));
 
     }
 
 
     @PostMapping("/saveInfo")
     public ResView saveInfo(@Validated SaveInfoBody body) {
-
-//        System.out.println("当前查询爱好 =====>  " + body.getHobby());
-//        map.put("age", body.getAge());
-//        map.put("name", body.getName());
-//        map.put("sex", body.getSex());
-//        map.put("hobby", body.getHobby());
-//        return ResView.success(1, "搜索到的结果 :").add("info", map);
         infoUserService.save(body);
         return ResView.success(1, "保存成功");
 
@@ -88,13 +60,6 @@ public class WebTest {
 
     @PostMapping("/updateInfo")
     public ResView updateInfo(@Validated SaveInfoBody body) {
-
-//        System.out.println("当前查询爱好 =====>  " + body.getHobby());
-//        map.put("age", body.getAge());
-//        map.put("name", body.getName());
-//        map.put("sex", body.getSex());
-//        map.put("hobby", body.getHobby());
-//        return ResView.success(1, "搜索到的结果 :").add("info", map);
         infoUserService.update(body);
         return ResView.success(1, "保存成功");
 
@@ -103,24 +68,23 @@ public class WebTest {
 
     @GetMapping("/getInfoList")
     public ResView getInfoList() {
-//        System.out.println("getInfoList query =====>  ");
-//        //Map<String, Object> map = new HashMap<>();
-//        if (!map.isEmpty()) {
-//            return ResView.success(1, "搜索到的结果 :").add("infoList", map);
-//        }
-//        //List<Map<String, Object>> mapList = new ArrayList<>();
-//        map.put("age", 18);
-//        map.put("name", "hong");
-//        map.put("sex", "女");
-//        map.put("hobby", "英语,  KEEP LEARNING ,  HOW MANY YEARS YOU HAVE BEEN STUDYING ENGLISH?");
-//        return ResView.success(1, "搜索到的结果 :").add("infoList", map);
-
-
-        PageBean<InfoUser> data = infoUserService.getList(1,100);
+        PageBean<InfoUser> data = infoUserService.getList(1, 100);
         if (data.getPages() == 0) return ResView.failed(0, "NO DATA WAS FOUND RELATE TO KEYWORDS");
         return ResView.success(1, "搜索到的结果 :").add("infoList", data);
-
-
     }
+
+
+    @DeleteMapping("/del/{id}")
+    public ResView del(@PathVariable Integer id) {
+        infoUserService.del(id);
+        return ResView.success(1, "删除成功");
+    }
+
+    @GetMapping("/getIdMin")
+    public ResView getIdMin() {
+        InfoUser idMin = infoUserService.getIdMin();
+        return ResView.success(1, "搜索最小id").add("idMin", idMin);
+    }
+
 
 }

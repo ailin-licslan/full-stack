@@ -4,7 +4,7 @@ import {http} from "../../http/index.js";
 import {useLocation, useNavigate} from "react-router-dom";
 
 export default function About() {
-
+    let testAt = {}
 
     const location = useLocation();
     console.log("获取传过来的参数location ", location)
@@ -25,32 +25,46 @@ export default function About() {
     const You = {
         id: 0,
         age: 32,
-        name: "LICSLAN",
-        sex: "男",
-        hobby: "篮球"
+        name: "默认姓名 - LICSLAN",
+        sex: "默认性别 - 男",
+        hobby: "默认爱好 - 篮球"
     }
 
 
     useEffect(() => {
         async function getInfo() {
-
+           // debugger
             if (id === null) {
                 id = 1;
             }
             const data = await http.get('/getLinInfo?id=' + id)
-
             console.log("get data from server is :" + JSON.stringify(data))
-
             let dataInfo = {}
-            if (data?.success) {
-                dataInfo = {
-                    ...infoYou,
-                    id: data.content.info[0].id,
-                    age: data.content.info[0].age,
-                    name: data.content.info[0].name,
-                    sex: data.content.info[0].sex,
-                    hobby: data.content.info[0].hobby
+
+            if (data?.success ) {
+                if (data.content.info.length === 0) {
+                    await axTest()
+                    if (testAt !== null) {
+                        dataInfo = {
+                            ...infoYou,
+                            id: testAt.id,
+                            age: testAt.age,
+                            name: testAt.name,
+                            sex: testAt.sex,
+                            hobby: testAt.hobby
+                        }
+                    }
+                } else {
+                    dataInfo = {
+                        ...infoYou,
+                        id: data.content.info[0].id,
+                        age: data.content.info[0].age,
+                        name: data.content.info[0].name,
+                        sex: data.content.info[0].sex,
+                        hobby: data.content.info[0].hobby
+                    }
                 }
+
             } else {
                 dataInfo = {
                     ...infoYou,
@@ -62,7 +76,10 @@ export default function About() {
                 }
             }
 
-            setInfoYou(dataInfo)
+            if (dataInfo.name !== null) {
+                setInfoYou(dataInfo)
+            }
+
 
         }
 
@@ -71,6 +88,7 @@ export default function About() {
 
 
     }, [infoYou.age, infoYou.name])
+
 
     const navigate = useNavigate();
     const handleClick = () => {
@@ -94,6 +112,30 @@ export default function About() {
         navigate("/")
     }
 
+    const del = async (event, id) => {
+        //debugger
+        const data = await http.delete('/del/' + id)
+        console.log("get data from server is :" + JSON.stringify(data))
+        if (data?.success) {
+            navigate("/")
+        }
+    };
+
+
+    //获取最小的id的
+    const axTest = async () => {
+        const res = await http.get('/getIdMin')
+        console.log("TEStAt  " + JSON.stringify(res))
+        testAt = {
+            id: res.content.idMin.id,
+            age: res.content.idMin.age,
+            name: res.content.idMin.name,
+            sex: res.content.idMin.sex,
+            hobby: res.content.idMin.hobby
+        }
+    }
+
+
     return <div id="base" className="text-black-50 text-center m-5 bg-body-secondary ">
 
         About me：
@@ -110,7 +152,7 @@ export default function About() {
 
         <button className="text-dark text-end m-5 rounded-2" onClick={handleClickUpdate}>修改</button>
 
-        <button className="text-dark text-end m-5 rounded-2">删除</button>
+        <button className="text-dark text-end m-5 rounded-2" onClick={event => del(event, infoYou.id)}>删除</button>
 
         <button className="text-dark text-end m-5 rounded-2" onClick={back}>返回</button>
 

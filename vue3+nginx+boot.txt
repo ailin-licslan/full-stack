@@ -32,12 +32,97 @@ a. Vue3 项目搭建  vite antd  可以参考： https://www.runoob.com/vue3/vue
 b. NGINX 安装启动 配置规则可以参考： https://www.bilibili.com/video/BV1Bx411Z7Do/?spm_id_from=333.337.search-card.all.click&vd_source=bbb985ceadc8e3199d1d5a091b58155b
 c. SpringBoot 项目搭建  可以参考：https://www.bilibili.com/video/BV1xu4y1p77p/
 
-
-
-
 Rust学习
 https://www.bilibili.com/video/BV16B4y1q7Sq/?p=2&spm_id_from=pageDriver&vd_source=bbb985ceadc8e3199d1d5a091b58155b
 Python学习
 https://www.bilibili.com/video/BV1E64y1h7qP/?spm_id_from=333.999.0.0&vd_source=bbb985ceadc8e3199d1d5a091b58155b
 8小时转职Golang工程师(如果你想低成本学习Go语言)  刘丹冰
 https://www.bilibili.com/video/BV1gf4y1r79E/?spm_id_from=333.337.search-card.all.click&vd_source=bbb985ceadc8e3199d1d5a091b58155b
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+一个 Fake HALF 全栈工程师 因一个全栈项目想出来的 WTF？
+
+//O.(几个人没事干想干点事的人 程序员 + 产品 + 其他角色) idea 头脑风暴发起 解决生活业务需求场景 产品计划书
+  成立团队 (公司)  寻找投资人  招募人员  下发需求执行  推出1.0产品 ...
+  1.可能被收购
+  2.失败
+  3.多轮融资 上市 成为巨头
+
+
+//A.需求分析讨论与技术选型和设计
+1.技术性选项  比如 JDK8 MySQL8.0 Redis 消息中间件选择 React SpringCloud K8S 持续集成工具选择 测试工具 大数据Spark/Hbase AI算法赋能 ELK 监控系统 ...
+2.需求主要功能点设计
+3.功能点拆分  工时预估  人员配置   (产品 UI 测试 开发 运维 算法 网络）===> 高级全栈工程师
+
+
+//B.前端项目创建
+1.npm create vite@latest
+2.npm install  &&  npm i bootstrap bootstrap-icons scss axios qs rc-pagination react-router-dom
+3.删除一些内容作为精简
+
+
+//C.后端项目创建  这里可以用任何类似能够提供服务的后端语言搭建的的服务
+spring.io  官网
+1.添加依赖 web mybatis mysql
+2.写配置文件
+3.启动服务
+
+
+//D.路由设计
+有哪些页面需要控制  权限控制  包括路由跳转过程中的传参
+
+
+//E.设计组件和页面交互流程
+搜索某块
+列表模块
+关于我模块
+
+
+//F.前后端编码实现功能
+1.后端的表设计 SQL编写  service 代码开发
+2.前端js编写 路由控制 事件控制  样式处理可以查看bootstrap官网找到自己需要的组件
+3.对编写好的接口进行前端端联调
+
+
+//G.QA测试
+1.功能测试
+2.性能测试
+
+
+//H.运维上线不同环境 有Devops就按照自动化处理 服务编程K8S 灰度发布 (一般中大型公司会有)
+1.Linux脚本编写
+2.上线配置编写 文件检查 上线文档记录管理
+
+
+//I.瀑布式开发还是螺旋式迭代开发
+1.一次性交付+稳定维护
+2.周而复始开发迭代
+
+
+
+
+
+
+
+
+
+
+
+
+
+

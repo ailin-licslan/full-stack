@@ -51,4 +51,11 @@ public class InfoUserService {
         dao.update(user);
     }
 
+    public void del(Integer id){
+        dao.delete(id);
+    }
+
+    public InfoUser getIdMin() {
+        return dao.getIdMin();
+    }
 }

@@ -70,18 +70,18 @@ export default function Home() {
         <table className="table table-striped">
             <thead>
             <tr>
-                <th scope="col">Id</th>
-                <th scope="col">Name</th>
-                <th scope="col">Age</th>
-                <th scope="col">Sex</th>
-                <th scope="col">Hobby</th>
+                <th scope="col">序号</th>
+                <th scope="col">姓名</th>
+                <th scope="col">年龄</th>
+                <th scope="col">性别</th>
+                <th scope="col">爱好</th>
                 <th scope="col">操作</th>
             </tr>
             </thead>
             <tbody>
             {
                 infoList.map(itme => (
-                    <tr>
+                    <tr key={itme.id}>
                         <th scope="row">{itme.id}</th>
                         <td>{itme.name}</td>
                         <td>{itme.age}</td>

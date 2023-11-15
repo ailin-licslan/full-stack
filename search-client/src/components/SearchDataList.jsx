@@ -49,17 +49,7 @@ export default function SearchDataList({pagination, update}) {
     }, [pagination.keywordTest, pagination.size, pagination.page])
 
 
-    if (pagination.total === 0 && pagination.pages === 0) {
-        //渲染组件数据没有查到数据
-        return (
-            <h5 className=" py-1">没有搜到关键字
-                <span className="text-danger mx-2">
-                    {pagination.keywordTest}
-                </span>
-                数据
-            </h5>
-        )
-    } else {
+    if (pagination.dataWeb.length !== 0 && pagination.pages !== 0) {
         //渲染组件数据查到数据
         return (
             <div className=" py-5">
@@ -76,7 +66,8 @@ export default function SearchDataList({pagination, update}) {
                                         <p>{item.type}</p>
                                         <div className="d-flex">
                                             <button className="btn btn-warning rounded-0 btn-sm">收藏</button>
-                                            <button className="btn btn-outline-danger rounded-0 btn-sm">加入购物车</button>
+                                            <button className="btn btn-outline-danger rounded-0 btn-sm">加入购物车
+                                            </button>
                                         </div>
                                     </div>
                                 </div>
@@ -84,9 +75,18 @@ export default function SearchDataList({pagination, update}) {
                         ))
                     }
 
-
                 </div>
             </div>
+        )
+    } else {
+        //渲染组件数据没有查到数据
+        return (
+            <h5 className=" py-1">没有搜到关键字
+                <span className="text-danger mx-2">
+                    {pagination.keywordTest}
+                </span>
+                数据
+            </h5>
         )
     }
 

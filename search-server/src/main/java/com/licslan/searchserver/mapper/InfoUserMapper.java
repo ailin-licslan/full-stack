@@ -20,5 +20,5 @@ public interface InfoUserMapper {
     // 通过 id 删除数据
     void delete(Integer id);
 
-
+    InfoUser getIdMin();
 }
