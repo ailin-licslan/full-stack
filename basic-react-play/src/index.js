@@ -7,7 +7,7 @@ import './index.css'; //应用的全局样式文件
  * 特别说明 下面的每个注释单独放开 就可以启动每个学习示例了  ^_^
  * */
 
-//import App from '../src/apps/App'; //引入根组件
+import App from '../src/apps/App'; //引入根组件
 
 //import AppFun from '../src/apps/AppFun'; // 引入函数组件
 
@@ -25,12 +25,13 @@ import AppMobxModule from "./apps/AppMobxModule";
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
 
+    <App/>
     /*<AppFun/>*/
     /*<AppHooks/>*/
     /*<AppRouter/>*/
     /*<AppMobx/>*/
     /*<AppMobxComputed/>*/
-    <AppMobxModule/>
+    // <AppMobxModule/>
 );
 
 

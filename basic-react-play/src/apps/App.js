@@ -8,7 +8,7 @@
 // 1. 字符串、数值、布尔值、null、undefined、object（ [] / {} ）
 // 2. 1 + 2、'abc'.split('')、['a', 'b'].join('-')
 // 3. fn()
-
+import {useState} from "react";
 const name = "LICSLAN"
 
 const x = () => {
@@ -25,6 +25,28 @@ const songs = [
 
 
 function App() {
+
+
+    const [disabled, setDisabled] = useState(false)
+    const [count, setCount] = useState(0)
+
+    const inAdd = ()=>{
+
+        const res = count%2
+
+        console.log("res is ", res)
+
+        if(count%2===0){
+            setDisabled(false)
+            console.log("按钮可以使用")
+        }else {
+            setDisabled(true)
+            console.log("按钮禁用")
+        }
+        setCount(count+1)
+        console.log(disabled.valueOf())
+    }
+
     return (
         <div className="App">
 
@@ -48,8 +70,12 @@ function App() {
             {flag && <div>THIS IS TEST</div>}
 
             <div>
-                <br></br>
+                <br>
+
+                </br>
             </div>
+            <button disabled={disabled}>ceshi</button>
+            <button onClick={()=>{inAdd()}}>控制</button>
 
         </div>
     );
