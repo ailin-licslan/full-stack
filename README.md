@@ -63,7 +63,6 @@ Nginx: https://www.bilibili.com/video/BV1mz4y1n7PQ/
 
 Git: https://www.bilibili.com/video/BV1KD4y1S7FL/
 
-Linux: 
 
 
 
